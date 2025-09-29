@@ -1,0 +1,74 @@
+<%- layout('layouts/main') %>
+
+<div class="dashboard">
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <i class="fas fa-cloud-upload-alt"></i>
+                File Upload Dashboard
+            </h1>
+            <p class="hero-subtitle">Manage your files with ease using our modern upload system</p>
+        </div>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-file"></i>
+            </div>
+            <div class="stat-content">
+                <h3><%= stats.fileCount %></h3>
+                <p>Total Files</p>
+            </div>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-hdd"></i>
+            </div>
+            <div class="stat-content">
+                <h3><%= stats.totalSize %> MB</h3>
+                <p>Storage Used</p>
+            </div>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="stat-content">
+                <h3>10 MB</h3>
+                <p>Max File Size</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="action-cards">
+        <a href="/upload" class="action-card upload-card">
+            <div class="card-icon">
+                <i class="fas fa-plus-circle"></i>
+            </div>
+            <div class="card-content">
+                <h3>Upload Files</h3>
+                <p>Upload single or multiple files with drag & drop support</p>
+            </div>
+            <div class="card-arrow">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+        </a>
+        
+        <a href="/files" class="action-card files-card">
+            <div class="card-icon">
+                <i class="fas fa-folder-open"></i>
+            </div>
+            <div class="card-content">
+                <h3>Manage Files</h3>
+                <p>View, download, and delete your uploaded files</p>
+            </div>
+            <div class="card-arrow">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+        </a>
+    </div>
+</div>
+

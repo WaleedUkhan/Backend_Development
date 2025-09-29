@@ -1,0 +1,136 @@
+<%- layout('layouts/main') %>
+
+<style>
+    .upload-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+        margin-bottom: 5px;
+    }
+
+    .upload-card {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        margin-top: 1.5rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: #2c3e50;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+    }
+
+    .form-control:focus {
+        outline: none;
+        border-color: #4a90e2;
+        box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+    }
+
+    textarea.form-control {
+        min-height: 100px;
+        resize: vertical;
+    }
+
+    .file-label {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        border: 2px dashed #ddd;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-align: center;
+        color: #666;
+    }
+
+    .file-label:hover {
+        border-color: #4a90e2;
+        background-color: #f8f9fa;
+    }
+
+    .file-label i {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: #4a90e2;
+    }
+
+    .file-input {
+        display: none;
+    }
+
+    .btn {
+        background-color: #4a90e2;
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 6px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-bottom: 1rem;
+    }
+
+    .btn:hover {
+        background-color: #357abd;
+    }
+</style>
+
+<div class="upload-container">
+    <h1><i class="fas fa-cloud-upload-alt"></i> Upload Files</h1>
+    
+    <div class="upload-card">
+        <form action="/upload" method="POST" enctype="multipart/form-data" class="upload-form">
+            <div class="form-group">
+                <label for="singleFile" class="file-label">
+                    <i class="fas fa-file-upload"></i>
+                    <span>Choose a file...</span>
+                    <input type="file" id="singleFile" name="singleFile" class="file-input">
+                </label>
+            </div>
+            
+            <div class="form-group">
+                <label for="multipleFiles" class="file-label">
+                    <i class="fas fa-folder-plus"></i>
+                    <span>Choose multiple files...</span>
+                    <input type="file" id="multipleFiles" name="multipleFiles" multiple class="file-input">
+                </label>
+            </div>
+            
+            <div class="form-group">
+                <label for="description">Description (optional):</label>
+                <textarea id="description" name="description" rows="3" class="form-control" placeholder="Add a description for your files..."></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-upload"></i> Upload Files
+            </button>
+        </form>
+        
+        <div class="upload-instructions">
+            <h3><i class="fas fa-info-circle"></i> Upload Instructions</h3>
+            <ul>
+                <li>Maximum file size: 10MB per file</li>
+                <li>Allowed file types: Images, Documents, PDFs, Audio, Video, Archives</li>
+                <li>For multiple files, use the second file picker</li>
+            </ul>
+        </div>
+    </div>
+</div>

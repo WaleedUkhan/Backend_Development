@@ -1,0 +1,257 @@
+<%- layout('layouts/main') %>
+
+<div class="result-container">
+    <div class="result-icon">
+        <% if (success) { %>
+            <i class="fas fa-check-circle success"></i>
+        <% } else { %>
+            <i class="fas fa-exclamation-circle error"></i>
+        <% } %>
+    </div>
+    
+    <h1 class="result-title"><%= title %></h1>
+    <p class="result-message"><%= message %></p>
+    
+    <% if (description && description !== 'No description provided') { %>
+        <div class="description-box">
+            <h3><i class="fas fa-comment"></i> Description</h3>
+            <p><%= description %></p>
+        </div>
+    <% } %>
+    
+    <% if (success && files && files.length > 0) { %>
+        <div class="uploaded-files">
+            <h3><i class="fas fa-files"></i> Uploaded Files</h3>
+            <div class="files-list">
+                <% files.forEach(file => { %>
+                    <div class="file-item">
+                        <div class="file-info">
+                            <div class="file-name">
+                                <i class="fas fa-file"></i>
+                                <%= file.originalName || file.filename %>
+                            </div>
+                            <div class="file-details">
+                                <span class="file-size"><%= file.sizeFormatted || (file.size ? (file.size / 1024).toFixed(2) + ' KB' : '') %></span>
+                                <% if (file.mimetype) { %>
+                                    <span class="file-type"><%= file.mimetype %></span>
+                                <% } %>
+                            </div>
+                        </div>
+                        <div class="file-actions">
+                            <a href="/uploads/<%= file.filename %>" target="_blank" class="btn btn-sm btn-primary">
+                                <i class="fas fa-eye"></i>
+                                View
+                            </a>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    <% } %>
+    
+    <div class="result-actions">
+        <a href="/upload" class="btn btn-primary">
+            <i class="fas fa-<%= success ? 'plus' : 'retry' %>"></i>
+            <%= success ? 'Upload More Files' : 'Try Again' %>
+        </a>
+        
+        <% if (success) { %>
+            <a href="/files" class="btn btn-secondary">
+                <i class="fas fa-folder"></i>
+                View All Files
+            </a>
+        <% } %>
+        
+        <a href="/" class="btn btn-outline">
+            <i class="fas fa-home"></i>
+            Dashboard
+        </a>
+    </div>
+</div>
+
+<style>
+    .result-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .result-icon {
+        text-align: center;
+        margin: 30px 0;
+    }
+
+    .result-icon i {
+        font-size: 64px;
+        margin-bottom: 20px;
+    }
+
+    .result-icon .success {
+        color: #28a745;
+    }
+
+    .result-icon .error {
+        color: #dc3545;
+    }
+
+    .result-title {
+        text-align: center;
+        color: #343a40;
+        margin-bottom: 20px;
+    }
+
+    .result-message {
+        text-align: center;
+        font-size: 18px;
+        color: #495057;
+        margin-bottom: 30px;
+    }
+
+    .description-box {
+        background-color: #f8f9fa;
+        border-left: 4px solid #4a6fa5;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 4px;
+    }
+
+    .description-box h3 {
+        margin-top: 0;
+        color: #4a6fa5;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .uploaded-files {
+        margin: 30px 0;
+    }
+
+    .uploaded-files h3 {
+        color: #343a40;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .files-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .file-item {
+        background: white;
+        border: 1px solid #dee2e6;
+        border-radius: 6px;
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .file-info {
+        flex-grow: 1;
+    }
+
+    .file-name {
+        font-weight: 500;
+        color: #212529;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .file-details {
+        font-size: 13px;
+        color: #6c757d;
+        margin-top: 5px;
+        display: flex;
+        gap: 15px;
+    }
+
+    .result-actions {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 30px;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: none;
+        cursor: pointer;
+        font-size: 15px;
+    }
+
+    .btn i {
+        font-size: 14px;
+    }
+
+    .btn-primary {
+        background-color: #4a6fa5;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: #3a5a8c;
+        transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+        transform: translateY(-2px);
+    }
+
+    .btn-outline {
+        background-color: greenyellow;
+        border: 1px solid #dee2e6;
+        color: #495057;
+    }
+
+    .btn-outline:hover {
+        background-color: #1b232b;
+        transform: translateY(-2px);
+    }
+
+    .btn-sm {
+        padding: 5px 10px;
+        font-size: 13px;
+    }
+
+    @media (max-width: 576px) {
+        .file-item {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .file-actions {
+            align-self: flex-end;
+        }
+
+        .result-actions {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+</style>

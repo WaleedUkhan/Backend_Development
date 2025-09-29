@@ -1,0 +1,53 @@
+<%- layout('layouts/main') %>
+
+<style>
+    .error-container {
+        background-color: #f8d7da;
+        border: 1px solid #f5c6cb;
+        color: #721c24;
+        padding: 20px;
+        border-radius: 5px;
+        margin: 20px 0;
+        max-width: 800px;
+        margin: 20px auto;
+    }
+    .error-details {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #f8f9fa;
+        border-radius: 4px;
+        font-family: monospace;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+    .back-link {
+        display: inline-block;
+        margin-top: 20px;
+        color: #007bff;
+        text-decoration: none;
+    }
+    .back-link:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="container">
+    <div class="error-container">
+        <h1><%= title %></h1>
+        <p><%= message %></p>
+        
+        <% if (process.env.NODE_ENV === 'development' && typeof error !== 'undefined') { %>
+            <div class="error-details">
+                <strong>Error Details:</strong>
+                <p><%= error.message %></p>
+                <pre><%= error.stack %></pre>
+            </div>
+        <% } %>
+        
+        <a href="/" class="back-link">← Back to Home</a>
+    </div>
+    
+    <footer style="margin-top: 40px; text-align: center; color: #6c757d; font-size: 0.9em;">
+        &copy; <%= currentYear %> File Upload App. All rights reserved.
+    </footer>
+</div>
