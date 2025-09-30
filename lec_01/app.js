@@ -2,10 +2,46 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+const session = require('express-session');
 const engine = require('ejs-mate');
 
 const app = express();
 const port = 3000;
+
+app.use(session({
+  secret: "MySession", 
+  resave: false, 
+  saveUninitialized: true, 
+  cookie: {
+    secure: false
+  }
+}))
+
+
+app.get('/login', (req, res)=>{
+  req.session.userId= '123', 
+  req.session.userName= 'Waleed Khan', 
+  res.send("user Logged In Correctly")
+
+}); 
+
+app.get('/profile', (req, res)=>{
+  if(req.session.userId){
+     res.send(`Welcome back, ${req.session.userName}!`);
+  }
+  else{
+    res.send('Please log in');
+  }
+})
+
+
+app.get('/logout', (req, res)=>{
+  req.session.destroy(); 
+  res.send("Logged Out completly");
+})
+
+
+
 
 // Import controllers
 const homeController = require('./controllers/homeController');
