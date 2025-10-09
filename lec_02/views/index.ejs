@@ -1,0 +1,47 @@
+
+<div class="jumbotron text-center py-5 bg-light rounded-3">
+    <h1 class="display-4">Welcome to RBAC Demo</h1>
+    <p class="lead">A complete role-based access control system built with Node.js, Express, and MongoDB</p>
+    <hr class="my-4">
+    
+    <% if (typeof user !== 'undefined' && user) { %>
+        <p>Welcome back, <strong><%= user.name %></strong>! You are logged in as a <span class="badge bg-primary"><%= user.role %></span>.</p>
+        <a class="btn btn-primary btn-lg" href="/dashboard" role="button">Go to Dashboard</a>
+    <% } else { %>
+        <p>Please log in or register to access the system.</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a class="btn btn-primary btn-lg" href="/auth/login" role="button">Login</a>
+            <a class="btn btn-outline-secondary btn-lg" href="/auth/register" role="button">Register</a>
+        </div>
+    <% } %>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <div class="display-4 mb-3">👤</div>
+                <h3>User Role</h3>
+                <p>Standard user access with basic permissions to view and manage their own content.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <div class="display-4 mb-3">👔</div>
+                <h3>Manager Role</h3>
+                <p>Elevated access to manage teams, view reports, and oversee user activities.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <div class="display-4 mb-3">👑</div>
+                <h3>Admin Role</h3>
+                <p>Full system access including user management and system configuration.</p>
+            </div>
+        </div>
+    </div>
+</div>
